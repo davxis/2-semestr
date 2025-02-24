@@ -9,7 +9,6 @@ void Person::Show()
 { 
     cout<<"Фамилия: "<<lastname<<endl;
     cout<<"Имя: "<<firstname<<endl;
-
     cout<<endl;
 }
 
