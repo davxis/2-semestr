@@ -14,5 +14,5 @@ class Person
         Person();
         Person(const string &ln, const string &fn, const string pn = "");
         void Show();
-        void Show_official();
+        void Show_formal();
 };
