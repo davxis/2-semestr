@@ -1,4 +1,4 @@
-#inckude class.h
+#include "class.h"
 class Angle {
 private:
     Point a, b, c;
