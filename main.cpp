@@ -1,71 +1,61 @@
-#include "class.cpp"
+// M_PI
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <iostream>
+#include "Point.h"
+#include "Angle.h"
+#include "Rectangle.h"
+
+using namespace std;
+
 /*
  * @brief Основная функция программы.
  * @return Возвращает 0 в случае успешного завершения программы.
  */
-
 int main() {
     // Ввод 3х точек.
     Point a, b, c;
+
     cout << "A (x, y): ";
     cin >> a;
+    if (!cin) {
+        cerr << "number expected\n";
+        return 1;
+    }
+
     cout << "B (x, y): ";
     cin >> b;
+    if (!cin) {
+        cerr << "number expected\n";
+        return 1;
+    }
+
     cout << "C (x, y): ";
     cin >> c;
+    if (!cin) {
+        cerr << "number expected\n";
+        return 1;
+    }
 
     // Вывод введённых точек.
     cout << "A = " << a << endl;
     cout << "B = " << b << endl;
     cout << "C = " << c << endl;
 
-    // Проверка, что точки не совпадают
-    if (a == b) {
-        cout << "Point A should not be the same as B" << endl;
-        return 1;
-    }
-    if (a == c) {
-        cout << "Point A should not be the same as C" << endl;
-        return 1;
-    }
-    if (b == c) {
-        cout << "Point B should not be the same as C" << endl;
-        return 1;
-    }
+    Rectangle* rect = nullptr;
 
-    // Вычисление углов: являются ли прямые
-    Angle angleA(b, a, c), angleB(a, b, c), angleC(a, c, b);
-    bool aIsRight, bIsRight, cIsRight;
-    aIsRight = angleA.isRight();
-    bIsRight = angleB.isRight();
-    cIsRight = angleC.isRight();
-
-    // Проверка, что хотя бы 1 из углов прямой
-    if (!aIsRight && !bIsRight && !cIsRight) {
-        cout << "There should be at least 1 angle between points which is right" << endl;
+    try {
+        rect = new Rectangle(a, b, c);
+    } catch (const char* erMsg) {
+        cerr << "Error: " << erMsg << endl;
+        if (rect) {
+            delete rect;
+        }
         return 1;
     }
 
-    // Выбираем точки `p` и `q` не того угла, который прямой
-    Point p, q;
-    if (aIsRight) {
-        p = b;
-        q = c;
-    } else if (bIsRight) {
-        p = a;
-        q = c;
-    } else {
-        p = a;
-        q = b;
-    }
-
-    // Вычисляем диаметр окружности, описанной около прямоугольника.
-    double dx = p.getX() - q.getX();
-    double dy = p.getY() - q.getY();
-    double diameter = sqrt(dx * dx + dy * dy);
-
-    // Вычисляем радиус этой окружности
-    double radius = diameter / 2;
+    // Вычисляем радиус окружности, описанной около прямоугольника
+    double radius = rect->getCircumscribedCircleRadius();
 
     // Вычисляем площадь круга
     double square = M_PI * radius * radius;
@@ -73,6 +63,9 @@ int main() {
     // Вывод ответа
     cout << "Radius = " << radius << endl;
     cout << "Square = " << square << endl;
+
+    // Очистка памяти на куче
+    delete rect;
 
     return 0;
 }
