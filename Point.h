@@ -2,7 +2,7 @@
 #include <string>
 
 class Point {
-public:
+private:
     unsigned x; ///< Координата X точки
     unsigned y; ///< Координата Y точки
 
@@ -11,6 +11,7 @@ public:
      * @param x Координата X точки.
      * @param y Координата Y точки.
      */
+public:
     Point(unsigned x, unsigned y);
 
     /*
