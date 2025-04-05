@@ -12,21 +12,6 @@ Rectangle::Rectangle(Point maxScreenResolution, Point a, Point b, Point c) : a(a
 }
 
 /*
- * @brief Конструктор для создания прямоугольника с заданными координатами вершин. 
- * @param maxScreenResolution Максимальное разрешение экрана для проверки допустимых координат.
- * @param ax Координата X первой вершины.
- * @param ay Координата Y первой вершины.
- * @param bx Координата X второй вершины.
- * @param by Координата Y второй вершины.
- * @param cx Координата X третьей вершины.
- * @param cy Координата Y третьей вершины.
- */
-Rectangle::Rectangle(Point maxScreenResolution, unsigned ax, unsigned ay, unsigned bx, unsigned by,
-    unsigned cx, unsigned cy) : a(ax, ay), b(bx, by), c(cx, cy) {
-    validate(maxScreenResolution);
-}
-
-/*
  * @brief Проверяет, является ли угол ABC прямым. 
  * Угол считается прямым, если скалярное произведение векторов BA и BC близко к нулю.
  * @param a Первая точка.
@@ -42,7 +27,7 @@ bool isRightAngle(Point a, Point b, Point c) {
     double bcx = cx - bx;
     double bcy = cy - by;
     double scalarProduct = bax * bcx + bay * bcy;
-    double epsilon = 0.0000001;
+    double epsilon = 1e-9;
     return abs(scalarProduct) < epsilon;
 }
 
