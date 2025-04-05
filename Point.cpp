@@ -15,8 +15,8 @@ Point::Point(unsigned x, unsigned y) : x(x), y(y) {}
  * @param other Другая точка для сравнения.
  * @return true, если точки равны; false в противном случае.
  */
-bool Point::operator==(const Point& other) {
-    return x == other.x && y == other.y;
+bool operator==(const Point& other) const {
+    return get_x() == other.get_x() && get_y() == other.get_y();
 }
 
 /*
@@ -25,19 +25,8 @@ bool Point::operator==(const Point& other) {
  * @param other Другая точка для сравнения.
  * @return true, если точки не равны; false в противном случае.
  */
-bool Point::operator!=(const Point& other) {
-    return x != other.x || y != other.y;
-}
-
-/*
- * @brief Оператор сравнения на больше или равно. 
- * Возвращает true, если хотя бы одна из координат текущей точки
- * больше или равна соответствующим координатам другой точки.
- * @param other Другая точка для сравнения.
- * @return true, если текущая точка больше или равна другой; false в противном случае.
- */
-bool Point::operator>=(const Point& other) {
-    return x >= other.x || y >= other.y;
+bool Point::operator!=(const Point& other) const {
+    return !(*this == other);
 }
 
 /*
