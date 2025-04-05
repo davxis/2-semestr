@@ -12,13 +12,13 @@ Point::Point() : x(0), y(0) {}
  * @param x Координата X.
  * @param y Координата Y.
  */
-Point::Point(double x, double y) : x(x), y(y) {}
+Point::Point(const double x, const double y) : x(x), y(y) {}
 
 /*
  * @brief Получить координату X точки.
  * @return Координата X.
  */
-double Point::getX() {
+double Point::getX() const {
     return x;
 }
 
@@ -26,7 +26,7 @@ double Point::getX() {
  * @brief Получить координату Y точки.
  * @return Координата Y.
  */
-double Point::getY() {
+double Point::getY() const {
     return y;
 }
 
@@ -63,4 +63,15 @@ std::ostream& operator<<(std::ostream& out, const Point& p) {
 bool Point::operator==(const Point& other) const {
     return doublesEquals(this->x, other.x)
         && doublesEquals(this->y, other.y);
+}
+
+/*
+ * @brief Оператор сравнения для класса Point.
+ * Позволяет сравнивать две точки на неравенство.
+ * @param other Константная ссылка на другую точку для сравнения.
+ * @return true, если точки не равны; false в противном случае.
+ */
+bool Point::operator!=(const Point& other) const {
+    return !doublesEquals(this->x, other.x)
+        || !doublesEquals(this->y, other.y);
 }
