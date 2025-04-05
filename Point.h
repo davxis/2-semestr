@@ -21,19 +21,19 @@ public:
      * @param x Координата X.
      * @param y Координата Y.
      */
-    Point(double x, double y);
+    Point(const double x, const double y);
 
     /*
      * @brief Получить координату X точки.
      * @return Координата X.
      */
-    double getX();
+    double getX() const;
 
     /*
      * @brief Получить координату Y точки.
      * @return Координата Y.
      */
-    double getY();
+    double getY() const;
 
     /*
      * @brief Оператор ввода для класса Point.
@@ -60,4 +60,12 @@ public:
      * @return true, если точки равны; false в противном случае.
      */
     bool operator==(const Point& other) const;
+
+    /*
+     * @brief Оператор сравнения для класса Point.
+     * Позволяет сравнивать две точки на неравенство.
+     * @param other Константная ссылка на другую точку для сравнения.
+     * @return true, если точки не равны; false в противном случае.
+     */
+    bool operator!=(const Point& other) const;
 };
