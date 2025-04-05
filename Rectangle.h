@@ -12,6 +12,7 @@ class Rectangle : public Figure2D {
     Point a; ///< Первая вершина прямоугольника.
     Point b; ///< Вторая вершина прямоугольника.
     Point c; ///< Третья вершина прямоугольника.
+    Point d; ///< Четвёртая вершина прямоугольника.
 
     /*
      * @brief Проверяет, что вершины a, b, c могут быть вершинами корректного прямоугольника. 
@@ -28,20 +29,34 @@ public:
      * @param b Вторая вершина прямоугольника.
      * @param c Третья вершина прямоугольника.
      */
-    Rectangle(Point maxScreenResolution, Point a, Point b, Point c);
+    Rectangle(const Point& maxScreenResolution, const Point& a,
+          const Point& b, const Point& c);
     
     /*
-     * @brief Конструктор для создания прямоугольника с заданными координатами вершин. 
-     * @param maxScreenResolution Максимальное разрешение экрана для проверки допустимых координат.
-     * @param ax Координата X первой вершины.
-     * @param ay Координата Y первой вершины.
-     * @param bx Координата X второй вершины.
-     * @param by Координата Y второй вершины.
-     * @param cx Координата X третьей вершины.
-     * @param cy Координата Y третьей вершины.
+     * @brief Конструктор прямоугольника по трем точкам
+     * Создает прямоугольник, заданный тремя точками на плоскости, 
+     * с учетом максимального разрешения экрана.
+     * @param maxScreenResolution Максимальное разрешение экрана (правая нижняя граница).
+     *        Все точки прямоугольника должны находиться в пределах (0,0) - maxScreenResolution.
+     * @param a Первая угловая точка прямоугольника (обычно левый верхний угол)
+     * @param b Вторая угловая точка прямоугольника (обычно правый верхний угол)
+     * @param c Третья угловая точка прямоугольника (обычно левый нижний угол)
+     * @throw std::invalid_argument Если:
+     *        - Любая из точек выходит за границы maxScreenResolution
+     *        - Точки не образуют прямоугольник (углы не 90 градусов)
+     *        - Точки расположены на одной прямой
+     * @note Для прямоугольника достаточно трех точек, так как четвертая может быть однозначно вычислена.
+     *       Порядок точек имеет значение - они должны идти последовательно по периметру.
      */
-    Rectangle(Point maxScreenResolution, unsigned ax, unsigned ay, unsigned bx, unsigned by,
-              unsigned cx, unsigned cy);
+Rectangle(const Point& maxScreenResolution,
+          const Point& a,
+          const Point& b,
+          const Point& c);
+     */
+    Rectangle(const Point& maxScreenResolution,
+          const Point& a,  // Точка A как объект Point
+          const Point& b,  // Точка B как объект Point
+          const Point& c); // Точка C как объект Point
     
     /*
      * @brief Возвращает строковое представление прямоугольника. 
