@@ -3,8 +3,8 @@
 
 class Point {
 private:
-    unsigned x; ///< Координата X точки
-    unsigned y; ///< Координата Y точки
+    double x; ///< Координата X точки
+    double y; ///< Координата Y точки
 
     /*
      * @brief Конструктор для создания точки с заданными координатами.
@@ -12,7 +12,7 @@ private:
      * @param y Координата Y точки.
      */
 public:
-    Point(unsigned x, unsigned y);
+    Point(const double x, const double y);
 
     /*
      * @brief Оператор сравнения на равенство.
@@ -37,7 +37,10 @@ public:
      * @param other Другая точка для сравнения.
      * @return true, если текущая точка больше или равна другой; false в противном случае.
      */
-    bool operator>=(const Point& other);
+    bool operator>=(const Point& other) const
+    {
+    return (x >= other.x) && (y >= other.y);
+    }
 
     /*
      * @brief Перегрузка оператора вывода для точки.
