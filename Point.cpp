@@ -75,3 +75,6 @@ bool Point::operator!=(const Point& other) const {
     return !doublesEquals(this->x, other.x)
         || !doublesEquals(this->y, other.y);
 }
+bool Point::operator!=(const Point& other) const {
+    return !(*this == other);  // Теперь используем operator==
+}
