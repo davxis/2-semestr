@@ -20,13 +20,13 @@ int main() {
     Point a, b, c;
 
     cout << "A (x, y): ";
-    a = readPoint();
+    Point a = readPoint();
     
     cout << "B (x, y): ";
-    b = readPoint();
+    Point b = readPoint();
 
     cout << "C (x, y): ";
-    c = readPoint();
+    Point c = readPoint();
 
     // Вывод введённых точек.
     cout << "A = " << a << endl;
