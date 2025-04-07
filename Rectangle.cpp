@@ -46,15 +46,7 @@ double Rectangle::getCircumscribedCircleRadius() {
  */
 void Rectangle::validateForEqualPoints(const Point& a, const Point& b, const Point& c) {
     // Проверка, что точки не совпадают
-    if (a == b) {
-        throw "Point A should not be the same as B";
-    }
-    if (a == c) {
-        throw "Point A should not be the same as C";
-    }
-    if (b == c) {
-        throw "Point B should not be the same as C";
-    }
+   if (a == b || a == c || b == c) throw "Points must be distinct";
 }
 
 /**
