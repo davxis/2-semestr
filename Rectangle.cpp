@@ -27,7 +27,7 @@ bool isRightAngle(Point a, Point b, Point c) {
     double bcx = cx - bx;
     double bcy = cy - by;
     double scalarProduct = bax * bcx + bay * bcy;
-    double epsilon = 1e-9;
+    double epsilon = std::numeric_limits<double>::epsilon();
     return abs(scalarProduct) < epsilon;
 }
 
